@@ -1,0 +1,36 @@
+# ==== vivo-ai-call-bark config ====
+# 这个文件会被 full_push.sh / start.sh 等 source。
+# 修改后重启脚本生效：sh stop.sh && sh start.sh
+
+# 必填：Bark 推送地址
+# 在 Bark App 里复制，形如：
+# BARK_URL="https://api.day.app/你的DeviceKey/"
+BARK_URL=""
+
+# 可选：BARK_URL 留空时，从 SmsForwarder 的 Bark 通道读取
+SMS_FORWARDER_DB="/data/data/cn.ppps.forwarder/databases/sms_forwarder.db"
+
+# vivo 小V电话助手数据库（一般不用改）
+SMARTANSWER_DB="/data/data/com.vivo.smartanswer/databases/smartdatabase.db"
+
+# 安装/状态/日志目录
+WATCH_DIR="/data/adb/ai-call-watch"
+
+# 轮询间隔（秒）
+POLL_SECONDS=5
+
+# 完成标记（state=3 或 endTime 接近通话时长）命中后，再等几秒确认
+MARKER_STABLE_SECONDS=5
+
+# 没有完成标记时，chat_json 长度稳定几秒才推送
+FALLBACK_STABLE_SECONDS=12
+
+# endTime 与 during_time 的容差（毫秒）
+ENDTIME_TOLERANCE_MS=4000
+
+# 日志上限（字节），超过后保留后半段
+LOG_MAX_BYTES=1048576
+
+# 可选：手动指定二进制路径（一般留空自动查找）
+# SQLITE3="/system/bin/sqlite3"
+# CURL="/system/bin/curl"
